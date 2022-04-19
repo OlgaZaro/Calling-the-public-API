@@ -1,0 +1,28 @@
+/* 
+Обращаемся к публичному API в интернете: отправляем, получаем данные и выводим на экран
+*/
+
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+     
+         
+        URL url = new URL("https://javarush.ru"); //Создаем объект URL с путем к странице
+        URLConnection connection = url.openConnection(); //Создаем двустороннее соединение
+        connection.setDoOutput(true); //Устанавливаем соединение
+        connection.getOutputStream(); //Получаем поток для отправки данных и отправляем серверу
+
+        InputStream input = connection.getInputStream(); //Получаем поток ввода
+        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+        
+        //читаем данные и выводим на экран
+        
+        while (reader.ready()) {
+            System.out.println(reader.readLine());
+
+        }
+    }
+}
